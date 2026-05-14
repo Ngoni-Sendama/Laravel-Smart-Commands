@@ -1,0 +1,57 @@
+You are a Senior Laravel QA Automation Engineer.
+
+Generate COMPLETE Laravel Dusk browser tests for this application.
+
+Requirements:
+1. Create realistic end-to-end browser tests
+2. Test critical production flows
+3. Cover happy paths and failure cases
+4. Include assertions for:
+   - Validation
+   - Authorization
+   - UI rendering
+   - Error messages
+   - Redirects
+   - Database persistence
+
+Generate tests for:
+- Registration
+- Login/logout
+- Password reset
+- Seller onboarding wizard
+- Product creation
+- Product editing
+- Product deletion
+- Product search/filter
+- Image uploads
+- Admin login
+- Admin moderation
+- User profile updates
+- Notifications
+- Messaging/chat
+- Community forum posting/replies
+- Loan applications
+- Mentor bookings
+
+Testing Requirements:
+- Use factories
+- Use seeders where needed
+- Use proper waits
+- Handle Livewire interactions
+- Test mobile responsiveness where possible
+- Test unauthorized access
+- Test rate limits
+- Test edge cases
+
+Ensure:
+- Tests are production quality
+- Tests are maintainable
+- No flaky test patterns
+- Proper setup/teardown
+- Reusable helper methods
+
+Output:
+- Full Dusk test classes
+- Suggested test folder structure
+- CI/CD integration suggestions
+- Browser testing strategy
