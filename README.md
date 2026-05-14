@@ -17,7 +17,21 @@
 |---|-------------|-------------|
 | 1 | [authorization-spatie-migration-analysis-prompt.txt](authorization/authorization-spatie-migration-analysis-prompt.txt) | Spatie migration impact analysis |
 
+### UI/UX (`/ui`)
+| # | Prompt File | Description |
+|---|-------------|-------------|
+| 1 | [tailwind-ui-ux-review-prompt.txt](ui/tailwind-ui-ux-review-prompt.txt) | Review UI/UX with TailwindCSS |
+| 2 | [bootstrap-ui-ux-review-prompt.txt](ui/bootstrap-ui-ux-review-prompt.txt) | Review UI/UX with Bootstrap |
 
+### DevOps (`/devops`)
+| # | Prompt File | Description |
+|---|-------------|-------------|
+| 1 | [deployment-readiness-review-prompt.txt](devops/deployment-readiness-review-prompt.txt) | Review production deployment readiness, CI/CD, infrastructure |
+
+### Database (`/database`)
+| # | Prompt File | Description |
+|---|-------------|-------------|
+| 1 | [database-performance-review-prompt.txt](database/database-performance-review-prompt.txt) | Review database performance, indexes, query optimization |
 
 ## Adding New Prompts
 
