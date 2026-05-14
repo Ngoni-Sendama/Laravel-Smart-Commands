@@ -1,0 +1,280 @@
+You are a senior software architect and lead reviewer.
+
+Your task is to fully audit and analyze this entire project codebase and produce a detailed implementation status review.
+
+## Main Goals
+
+1. Understand the whole architecture and current implementation state.
+
+2. Determine where development was left off.
+
+3. Identify the latest implemented feature/module.
+
+4. Detect incomplete, missing, duplicated, or inconsistent functionality.
+
+5. Verify backend structure consistency across:
+
+   * Models
+   * Controllers
+   * Services
+   * Repositories
+   * Routes
+   * Policies
+   * Middleware
+   * Permissions
+   * Roles
+   * Validation
+   * API resources
+   * Frontend integrations (if applicable)
+
+6. Generate a comprehensive markdown report with:
+
+   * Current project status
+   * Missing features
+   * Bugs / inconsistencies
+   * Security concerns
+   * Pending tasks
+   * Recommended next steps
+
+---
+
+# Full Project Status Review Instructions
+
+## Phase 1 — Project Discovery
+
+First:
+
+* Scan the entire repository structure.
+* Identify framework, architecture style, and conventions used.
+* Detect:
+
+  * Backend framework
+  * Frontend framework
+  * ORM
+  * Authentication system
+  * Authorization system
+  * Queue/events/jobs
+  * API structure
+  * Database design patterns
+  * Modular/domain structure
+
+Then summarize:
+
+* Overall architecture
+* Major modules
+* Main business domains
+* Existing implemented systems
+
+---
+
+## Phase 2 — Determine Current Progress
+
+Analyze:
+
+* Recent commits/files if available
+* Recently modified modules
+* TODO/FIXME comments
+* Incomplete controllers
+* Placeholder methods
+* Empty services
+* Unused routes
+* Dead code
+* Commented code
+
+Determine:
+
+* The last major thing implemented
+* What feature was being worked on most recently
+* Which modules appear unfinished
+
+Provide a "Current Development State" summary.
+
+---
+
+## Phase 3 — CRUD & Route Consistency Check
+
+For EVERY model/entity in the system:
+
+Verify that it has:
+
+### Database
+
+* Migration
+* Relationships
+* Constraints
+* Soft deletes if needed
+* Indexes if needed
+
+### Backend
+
+* Model
+* Controller
+* Service layer
+* Repository layer (if architecture uses it)
+* Validation/request classes
+* Policies
+* Permissions
+* Routes
+* API resources/transformers
+* Tests
+
+### Operations
+
+Check whether each model properly supports:
+
+* Create
+* Read
+* Update
+* Delete
+* Restore (if soft deletes)
+* Force delete (if needed)
+* List/pagination
+* Search/filter/sort
+
+---
+
+## Phase 4 — Roles & Permissions Status
+
+Carefully inspect the authorization system.
+
+For every route/controller/model:
+
+* Verify permissions exist
+* Verify permissions are actually enforced
+* Verify middleware usage
+* Verify role mapping consistency
+* Detect missing authorization checks
+* Detect over-permissive endpoints
+* Detect inconsistent naming
+
+Generate a matrix like:
+
+| Module | Permissions Exist | Middleware Applied | Policy Exists | Fully Protected |
+| ------ | ----------------- | ------------------ | ------------- | --------------- |
+
+Also detect:
+
+* Orphan permissions
+* Unused roles
+* Duplicate permissions
+* Missing guards
+* Missing ownership checks
+
+---
+
+## Phase 5 — API & Frontend Consistency
+
+Check:
+
+* Whether frontend calls match backend routes
+* Missing endpoints used by frontend
+* Unused API routes
+* Inconsistent response formats
+* Validation mismatch
+* Missing error handling
+* Missing loading states
+* Broken integrations
+
+If frontend exists:
+
+* Detect incomplete pages
+* Detect placeholder UI
+* Detect unconnected components
+
+---
+
+## Phase 6 — Code Quality Review
+
+Identify:
+
+* Duplicate logic
+* Large controllers
+* Missing abstractions
+* Potential performance issues
+* N+1 query risks
+* Missing eager loading
+* Missing transactions
+* Security concerns
+* Hardcoded values
+* Environment issues
+* Missing tests
+* Technical debt
+
+---
+
+## Phase 7 — Produce Reports
+
+Generate the following files:
+
+### 1. PROJECT_STATUS.md
+
+Contains:
+
+* Architecture overview
+* Current status
+* Last completed feature
+* In-progress modules
+* Risks/issues
+* Recommendations
+
+### 2. PENDING_TASKS.md
+
+Contains categorized pending tasks:
+
+Example sections:
+
+* Critical Bugs
+* Missing CRUD Operations
+* Missing Permissions
+* Incomplete Routes
+* Frontend Issues
+* Security Improvements
+* Refactoring Tasks
+* Testing Tasks
+* Performance Improvements
+
+Each task should include:
+
+* Priority
+* Affected files/modules
+* Recommended fix
+* Estimated complexity
+
+### 3. PERMISSIONS_STATUS.md
+
+Contains:
+
+* Full roles/permissions matrix
+* Missing protections
+* Inconsistent authorization
+* Security recommendations
+
+### 4. ROUTES_STATUS.md
+
+Contains:
+
+* All routes grouped by module
+* Missing CRUD endpoints
+* Unused routes
+* Unprotected routes
+* Naming inconsistencies
+
+---
+
+# Important Requirements
+
+* Do NOT assume functionality exists — verify it.
+* Trace actual usage before concluding.
+* Be exhaustive and systematic.
+* Prefer finding inconsistencies over summarizing.
+* Flag uncertainty clearly.
+* If something appears partially implemented, explain exactly what is missing.
+* Highlight blockers preventing production readiness.
+* Include file paths in findings whenever possible.
+
+At the end, provide:
+
+1. Executive summary
+2. Production readiness score (0–100)
+3. Top 10 highest priority issues
+4. Recommended next implementation steps in order

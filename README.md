@@ -11,6 +11,7 @@
 | # | Prompt File | Description |
 |---|-------------|-------------|
 | 1 | [controller-architecture-review-prompt.txt](architecture/controller-architecture-review-prompt.txt) | Audit all controllers for architecture & security |
+| 2 | [implementation-status-review-prompt.txt](architecture/implementation-status-review-prompt.txt) | Full project implementation status review and audit |
 
 ### Authorization (`/authorization`)
 | # | Prompt File | Description |
