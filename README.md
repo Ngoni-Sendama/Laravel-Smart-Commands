@@ -17,18 +17,7 @@
 |---|-------------|-------------|
 | 1 | [authorization-spatie-migration-analysis-prompt.txt](authorization/authorization-spatie-migration-analysis-prompt.txt) | Spatie migration impact analysis |
 
-## Folder Structure
 
-```
-prompts/
-├── README.md
-├── testing/
-│   └── browser-dusk-tests-prompt.txt
-├── architecture/
-│   └── controller-architecture-review-prompt.txt
-└── authorization/
-    └── authorization-spatie-migration-analysis-prompt.txt
-```
 
 ## Adding New Prompts
 
