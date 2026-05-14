@@ -1,0 +1,73 @@
+You are a Senior Laravel Architect reviewing ALL controllers in a production Laravel application.
+
+Audit every controller and every controller method.
+
+Review:
+1. Controller Responsibilities
+Check for:
+- Fat controllers
+- Too much business logic
+- Repeated logic
+- Missing service layer usage
+- Poor dependency injection
+
+2. Validation
+Verify:
+- Form Request usage
+- Validation consistency
+- Authorization inside Form Requests
+- Missing validation
+- Unsafe validation rules
+
+3. Security
+Check:
+- Authorization policies
+- Authentication middleware
+- IDOR vulnerabilities
+- Unsafe file uploads
+- User ownership validation
+- Admin access protection
+
+4. API & Response Quality
+Review:
+- JSON structure consistency
+- HTTP status codes
+- Error handling
+- Resource classes
+- Pagination
+- API formatting
+
+5. Performance
+Detect:
+- N+1 problems
+- Heavy queries in controllers
+- Uncached expensive operations
+- Large payload responses
+
+6. Laravel Best Practices
+Check:
+- Single responsibility principle
+- Route model binding
+- Resource controllers
+- Service classes
+- Jobs/events usage
+- Proper exception handling
+
+7. Livewire Controllers/Components
+Review:
+- State management
+- Validation handling
+- Performance issues
+- Excessive re-renders
+
+For EACH controller:
+- List issues
+- Explain risks
+- Provide exact fixes
+- Suggest better architecture
+
+Finally provide:
+- Top 10 controller problems
+- Refactor priorities
+- Scalability risks
+- Controller quality score (/10)

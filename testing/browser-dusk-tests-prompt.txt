@@ -18,20 +18,20 @@ Generate tests for:
 - Registration
 - Login/logout
 - Password reset
-- Seller onboarding wizard
-- Product creation
-- Product editing
-- Product deletion
-- Product search/filter
-- Image uploads
+- User onboarding wizard (customize per project)
+- [CUSTOM_ENTITY_1] creation
+- [CUSTOM_ENTITY_1] editing
+- [CUSTOM_ENTITY_1] deletion
+- [CUSTOM_ENTITY_1] search/filter
+- File/image uploads
 - Admin login
-- Admin moderation
+- Admin moderation/dashboard
 - User profile updates
 - Notifications
 - Messaging/chat
-- Community forum posting/replies
-- Loan applications
-- Mentor bookings
+- Community features (forum posts/replies, if applicable)
+- [CUSTOM_ENTITY_2] applications/submissions (if applicable)
+- [CUSTOM_ENTITY_3] bookings/reservations (if applicable)
 
 Testing Requirements:
 - Use factories
@@ -42,6 +42,11 @@ Testing Requirements:
 - Test unauthorized access
 - Test rate limits
 - Test edge cases
+
+Customize tests based on:
+- Your project's main entities (e.g., Listings, Listings, Services, Events, etc.)
+- Your project's core features (e.g., Marketplace, Booking, Social, etc.)
+- Your project's user roles (e.g., Customer, Vendor, Partner, Member, etc.)
 
 Ensure:
 - Tests are production quality
