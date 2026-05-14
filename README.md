@@ -38,3 +38,4 @@
 1. Create new `.txt` file in appropriate category folder
 2. Add entry to table above
 3. Keep prompts focused and project-agnostic where possible
+4. 
