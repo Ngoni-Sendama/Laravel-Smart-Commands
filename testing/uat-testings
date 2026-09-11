@@ -1,0 +1,745 @@
+You are acting as a **Senior QA Engineer, UAT Analyst, and Software System Auditor**.
+
+Your task is to inspect the entire application/codebase and produce a **complete User Acceptance Testing (UAT) checklist** for the testers who will test the published system.
+
+This must NOT be a generic checklist.
+
+You must investigate the actual implementation of the system and document every testable feature, page, workflow, action, validation, permission, dependency, relationship, and edge case that exists in the application.
+
+## PRIMARY OBJECTIVE
+
+Create a comprehensive UAT document that allows a tester who does not know the source code to systematically test the entire published system without accidentally missing small features.
+
+The checklist must follow the application's **sidebar/menu navigation order**, but you must also understand database relationships and dependencies so that prerequisite/master data is tested and created before pages that depend on that data.
+
+For example:
+
+* Roles should be tested before Users if Users depend on Roles.
+* Categories should be tested before Products if Products require Categories.
+* Customers should be tested before Orders if Orders require Customers.
+* Plans should be tested before Subscriptions if Subscriptions depend on Plans.
+
+Do not blindly follow the visual sidebar order if doing so would make a dependent feature impossible to test.
+
+Where necessary, reorder tests or clearly state prerequisites.
+
+---
+
+# 1. SYSTEM DISCOVERY
+
+Before creating the UAT checklist, inspect the whole project.
+
+Scan and understand:
+
+* Sidebar/menu/navigation links
+* Routes
+* Route groups
+* Route parameters
+* Named routes
+* Controllers
+* Controller methods
+* Models
+* Model relationships
+* Foreign keys
+* Database migrations
+* Database constraints
+* Validation rules
+* Form requests
+* Middleware
+* Authentication
+* Authorization
+* Roles
+* Permissions
+* Policies
+* Guards
+* Blade/templates/views or frontend pages
+* Forms
+* Modals
+* Dropdowns
+* Buttons
+* Tables
+* Filters
+* Search
+* Sorting
+* Pagination
+* Tabs
+* Detail pages
+* Create pages
+* Edit pages
+* Delete actions
+* Restore actions
+* Status changes
+* Enable/disable actions
+* Bulk actions
+* File uploads
+* Image uploads
+* Downloads
+* Exports
+* Imports
+* AJAX/API requests
+* API endpoints
+* Background operations visible to users
+* Notifications
+* Emails
+* Confirmation dialogs
+* Toast messages
+* Error messages
+* Empty states
+* Loading states
+* Dashboard widgets
+* Counts/statistics
+* Profile/account functionality
+* Avatar dropdown functionality
+* Logout functionality
+* Password changes
+* Settings
+* Any feature that may not appear directly in the sidebar
+
+Also inspect JavaScript/Flutter/frontend logic where relevant to identify functionality that might not be obvious from controllers alone.
+
+Do not assume that one page equals one test case.
+
+One page may require many test cases.
+
+---
+
+# 2. BUILD A FEATURE INVENTORY FIRST
+
+Before writing the final checklist, internally build an inventory of all application functionality.
+
+For each module identify:
+
+* Module name
+* Sidebar location
+* URL
+* Route
+* Controller
+* Controller method
+* Related model
+* Related database tables
+* Foreign-key dependencies
+* Required permissions
+* Available actions
+* Validation rules
+* Status/state logic
+* Related modules
+* Prerequisite data
+
+Use this inventory to make sure no functionality is missed.
+
+The inventory is for your analysis. The final output should focus on the UAT checklist unless explicitly requested otherwise.
+
+---
+
+# 3. TESTING ORDER
+
+Organize the final UAT checklist primarily according to the **sidebar link order**.
+
+However, determine dependency order first.
+
+If Module B requires records from Module A, Module A must be tested before the dependent functionality in Module B.
+
+Examples:
+
+Role → Permission → User
+
+Category → Product
+
+Plan → Subscription
+
+Country → State → City
+
+Customer → Order → Payment
+
+Newsletter → Newsletter recipients/history
+
+Document prerequisite relationships wherever they exist.
+
+For each dependent scenario, include a prerequisite in the test steps where appropriate.
+
+---
+
+# 4. TEST ALL CRUD OPERATIONS
+
+For every applicable module, investigate and create test cases for:
+
+### List
+
+* Page opens successfully
+* Existing records display correctly
+* Correct columns are shown
+* Pagination works
+* Search works
+* Filters work
+* Sorting works
+* Empty state works
+* Status labels display correctly
+* Related/foreign-key values display correctly
+* Actions available for each row work correctly
+
+### Create
+
+* Create page/modal opens
+* All expected fields appear
+* Required field validation
+* Optional fields
+* Valid data submission
+* Invalid data
+* Duplicate values
+* Minimum/maximum lengths
+* Invalid formats
+* Numeric limits
+* Date restrictions
+* Dropdown options
+* Foreign-key selection
+* File/image upload where applicable
+* Cancel/back behaviour
+* Successful save
+* Success notification/message
+* Record appears in list after save
+
+### View/Details
+
+* Correct record loads
+* All expected information displays
+* Relationships display correctly
+* Missing/null values are handled correctly
+* Action buttons work
+
+### Edit
+
+* Edit page opens
+* Existing values are pre-populated
+* Values can be changed
+* Validation still applies
+* Foreign-key relationships can be changed where allowed
+* Saving updates the correct record
+* Updated values appear in list/details
+* Cancel behaviour works
+
+### Delete
+
+* Delete option appears where authorized
+* Confirmation appears if implemented
+* Cancel delete works
+* Confirm delete works
+* Record disappears or changes state correctly
+* Foreign-key restrictions are respected
+* Dependent records are handled correctly
+* User receives correct success/error feedback
+
+Also test:
+
+* Soft delete
+* Restore
+* Archive
+* Activate/deactivate
+* Publish/unpublish
+* Approve/reject
+
+where implemented.
+
+---
+
+# 5. VALIDATION TESTING
+
+Inspect the actual backend and frontend validation rules.
+
+Do not invent validation rules.
+
+Create individual test scenarios for important rules such as:
+
+* Required fields
+* Email validation
+* Unique values
+* Password requirements
+* Numeric values
+* Minimum value
+* Maximum value
+* Minimum length
+* Maximum length
+* Date validation
+* Start/end date relationships
+* File type
+* File size
+* Image dimensions
+* URL validation
+* Enum values
+* Percentage ranges
+* Foreign-key existence
+* Conditional validation
+
+For example, if a coupon type supports:
+
+* Fixed
+* Percentage
+
+test both types separately.
+
+If percentage values must remain within a particular range, test valid and invalid boundaries.
+
+---
+
+# 6. FOREIGN-KEY AND RELATIONSHIP TESTING
+
+This is extremely important.
+
+Inspect migrations, models, controllers, forms, and database relationships.
+
+Identify every relationship such as:
+
+* belongsTo
+* hasMany
+* belongsToMany
+* pivot tables
+* foreign keys
+
+Create test cases that verify:
+
+* Parent record can be selected
+* Correct parent values appear in dropdowns
+* Saved relationship is correct
+* Relationship appears correctly on list/detail/edit pages
+* Editing the relationship works
+* Deleted/inactive parent records are handled appropriately
+* Dependent records cannot become corrupted
+* Foreign-key restrictions behave correctly
+
+Make sure parent/master records are tested before dependent records.
+
+---
+
+# 7. ROLE AND PERMISSION TESTING
+
+Inspect middleware, policies, permission checks, route guards, and UI conditions.
+
+For each important module/action test where applicable:
+
+* User with permission can see the menu
+* User without permission cannot see the menu
+* User with View permission can access list/details
+* User without View permission cannot access the URL manually
+* Create permission
+* Edit permission
+* Delete permission
+* Other custom permissions
+* Buttons/actions hidden for unauthorized users
+* Direct URL access is blocked when unauthorized
+* API access is blocked where applicable
+
+Do not test authorization only through UI visibility.
+
+Test direct URL/API access as well when relevant.
+
+---
+
+# 8. AUTHENTICATION AND ACCOUNT TESTING
+
+Where implemented, include:
+
+* Login
+* Invalid login
+* Logout
+* Session handling
+* Forgotten password
+* Password reset
+* Change password
+* Profile update
+* Avatar/profile image
+* Account dropdown
+* Unauthorized access
+* Expired session behaviour
+* Redirect behaviour
+
+---
+
+# 9. URL AND ROUTE TESTING
+
+Inspect all application routes.
+
+Every meaningful user-facing route should be represented somewhere in the UAT checklist.
+
+Check:
+
+* Correct URL loads
+* Invalid ID
+* Missing record
+* Unauthorized ID
+* Route parameters
+* Direct navigation
+* Browser back behaviour where relevant
+* Redirect after create/edit/delete
+* Unexpected query parameters where relevant
+
+Do not list purely internal technical routes unless they affect user-visible behaviour.
+
+---
+
+# 10. API-DRIVEN FEATURES
+
+If pages use APIs/AJAX, test the user-visible outcome.
+
+Where useful, identify expected behaviour when:
+
+* Request succeeds
+* Request fails
+* Server validation fails
+* Data is empty
+* Record is missing
+* User lacks permission
+* Network/request operation fails
+
+The UAT tester does not necessarily need to inspect HTTP internals unless the API itself is part of the published product.
+
+---
+
+# 11. DASHBOARD AND REPORTING
+
+For dashboards/reports/statistics, verify:
+
+* Page loads
+* Cards/widgets display
+* Counts are accurate
+* Values correspond to actual database records
+* Filters work
+* Date ranges work
+* Charts load
+* Empty datasets are handled
+* Totals update when underlying records change
+
+Do not simply test that a dashboard is visible.
+
+Test the accuracy of the information where practical.
+
+---
+
+# 12. CROSS-MODULE WORKFLOWS
+
+Identify complete business workflows that span several modules.
+
+Create end-to-end scenarios where useful.
+
+Example:
+
+Create Role
+→ Assign Permissions
+→ Create User
+→ Assign Role
+→ Login as User
+→ Verify allowed pages
+→ Verify restricted pages
+
+Another example:
+
+Create Category
+→ Create Product under Category
+→ Edit Category
+→ Verify Product relationship
+→ Attempt Category deletion
+→ Verify dependency handling
+
+The purpose is to catch failures that isolated CRUD testing may miss.
+
+---
+
+# 13. SMALL UI ACTIONS MUST NOT BE MISSED
+
+Document even small features such as:
+
+* Avatar dropdown
+* Profile menu
+* Logout
+* Breadcrumbs if functional
+* Status toggle
+* Copy buttons
+* Preview buttons
+* Download buttons
+* Date picker
+* Rich-text editor
+* Select-all checkbox
+* Row checkbox
+* Bulk action
+* Modal close
+* Cancel button
+* Reset filter
+* Clear search
+* Next/previous pagination
+* Tooltips where functionally important
+* Tabs
+* Expand/collapse controls
+* Action menus
+* Dropdown menus
+
+If the user can interact with it and it affects the system, investigate whether it needs a test case.
+
+---
+
+# 14. ERROR AND EDGE CASES
+
+Include meaningful negative and edge-case testing.
+
+Examples:
+
+* Empty form
+* Duplicate record
+* Invalid email
+* Extremely long input
+* Invalid numeric input
+* Missing foreign key
+* Deleted related record
+* Invalid URL ID
+* Access without permission
+* Empty database/list
+* No search results
+* Invalid upload
+* Cancel operation
+* Double-click submission where relevant
+* Record changed/deleted before edit submission where relevant
+
+Focus on cases supported by or reasonably implied by the actual implementation.
+
+Do not generate dozens of meaningless theoretical cases.
+
+---
+
+# 15. EXPECTED RESULT QUALITY
+
+The **Expected Result** column must be very specific.
+
+Bad:
+
+"System should work correctly."
+
+Bad:
+
+"User should be created."
+
+Good:
+
+"The user record is successfully created, a success notification is displayed, the user appears in the Users list, and the selected Role is shown against the new user."
+
+Expected Results should state what the UAT tester should visibly observe.
+
+Do not describe implementation details unless they affect acceptance behaviour.
+
+---
+
+# 16. TEST STEPS QUALITY
+
+Test Steps must be executable by a human tester using the published application.
+
+Example:
+
+1. Login as an administrator.
+2. Open Roles & Permissions.
+3. Click Add Role.
+4. Enter `Sales Manager`.
+5. Select the specified permissions.
+6. Click Save.
+7. Return to the Roles list.
+
+Avoid vague instructions such as:
+
+"Test role creation."
+
+---
+
+# 17. FINAL UAT TABLE FORMAT
+
+The final checklist MUST contain exactly these columns:
+
+| Test Case ID | Test Scenario | Test Steps | Expected Result | Actual Result | Pass/Fail |
+
+IMPORTANT:
+
+### You must complete:
+
+* Test Case ID
+* Test Scenario
+* Test Steps
+* Expected Result
+
+### You must leave these columns BLANK:
+
+* Actual Result
+* Pass/Fail
+
+These two columns will be completed manually by the UAT testers.
+
+Do NOT predict the Actual Result.
+
+Do NOT mark anything Passed or Failed.
+
+---
+
+# 18. TEST CASE IDs
+
+Use structured IDs based on the module.
+
+Examples:
+
+AUTH-001
+AUTH-002
+
+ROLE-001
+ROLE-002
+
+USER-001
+USER-002
+
+ADS-001
+
+NEWS-001
+
+REVIEW-001
+
+COUPON-001
+
+Use a sensible abbreviation for each module and increment sequentially.
+
+Keep IDs stable and easy for the QA/UAT team to reference when reporting bugs.
+
+---
+
+# 19. SECTION STRUCTURE
+
+Separate test cases by module using headings.
+
+Example:
+
+# 1. Authentication
+
+| Test Case ID | Test Scenario | Test Steps | Expected Result | Actual Result | Pass/Fail |
+
+# 2. Roles & Permissions
+
+...
+
+# 3. Users
+
+...
+
+The section ordering should correspond to the final testing order determined from:
+
+1. Required prerequisite/master data
+2. Sidebar order
+3. Foreign-key dependencies
+4. Cross-module workflows
+
+---
+
+# 20. DO NOT OMIT FEATURES JUST BECAUSE THEY ARE NOT IN THE SIDEBAR
+
+Some features may only be accessible through:
+
+* Row actions
+* Detail pages
+* Profile dropdown
+* Buttons
+* Nested routes
+* Modals
+* APIs
+* Dashboard cards
+* Links inside other pages
+
+These must still be included.
+
+The sidebar should determine the primary organizational order, not the boundary of what gets tested.
+
+---
+
+# 21. TRACE FEATURES ACROSS THE STACK
+
+Before deciding that a module has been completely documented, cross-check:
+
+Route
+→ Controller
+→ Validation
+→ Model
+→ Database
+→ View/UI
+→ JavaScript/API
+→ Permission
+→ Related module
+
+This cross-check is mandatory.
+
+If functionality exists in one layer but is not obvious elsewhere, investigate it before completing the checklist.
+
+---
+
+# 22. DO NOT ASSUME
+
+Do not invent functionality.
+
+Use the actual source code as the source of truth.
+
+Classify internally:
+
+* Confirmed implementation
+* Dependency inferred from implementation
+* Potential issue requiring manual verification
+
+If something is uncertain, write the test case around the observable expected behaviour supported by the code rather than inventing product requirements.
+
+---
+
+# 23. IDENTIFY POSSIBLE DEFECTS SEPARATELY
+
+While investigating the system, you may notice possible defects, inconsistencies, inaccessible routes, missing validations, broken relationships, or UI/backend mismatches.
+
+Do NOT change the UAT Expected Result to match a suspected bug.
+
+Expected Result represents the intended/acceptable behaviour.
+
+At the end of the document, add a separate section:
+
+## Pre-UAT Observations
+
+Only include this section when you discover something that testers or developers should be aware of before UAT.
+
+Do not mark the related UAT test as failed because execution has not yet occurred.
+
+---
+
+# 24. COVERAGE CHECK BEFORE FINALIZING
+
+Before producing the final document, perform a completeness check.
+
+Verify that you have reviewed:
+
+* All sidebar links
+* All user-facing routes
+* All controllers
+* All controller actions
+* All create/edit forms
+* All detail pages
+* All models
+* All relevant foreign keys
+* All validations
+* All permissions
+* All status/state actions
+* All search/filter/sort functions
+* All uploads
+* All modals/dropdowns
+* All dashboard functionality
+* All profile/account functionality
+* All significant cross-module workflows
+
+Compare the final UAT cases against the feature inventory.
+
+If a discovered feature has no corresponding UAT scenario, add one before finishing.
+
+---
+
+# FINAL INSTRUCTION
+
+Do not generate a short summary checklist.
+
+The objective is **exhaustive functional UAT coverage of the actual published system**.
+
+A tester should be able to take the resulting document, start from Test Case 001, follow it sequentially, and test the complete application with minimal knowledge of the source code.
+
+Prioritize accuracy and coverage over brevity.
+
+The final output must be ready to copy directly into Excel, Google Sheets, or a formal UAT document.
