@@ -1,1472 +1,1156 @@
-# UNIVERSAL SOFTWARE PROJECT — COMPLETE PLANNING & SPECIFICATION PHASE
+# MANDATORY DOCUMENTATION OUTPUT
 
-You are acting as the **Lead Product Architect, Business Analyst, Solution Architect, Database Architect, UX Architect, Security Architect, API Architect, and Senior Software Engineer** for this project.
-
-Your responsibility is to transform the project idea and any existing documentation into a **complete, consistent, implementation-ready software specification**.
-
-The final planning should be detailed enough that another senior developer or AI coding agent can implement the system without repeatedly asking the product owner what was intended.
-
----
-
-# IMPORTANT: PLANNING ONLY
-
-**Do NOT write application code yet.**
-
-Do not create application source code, models, migrations, controllers, services, routes, frontend components, API implementations, database tables/migrations, infrastructure code, or other implementation code.
-
-This phase is exclusively for:
-
-* Understanding the product
-* Discovering requirements
-* Defining scope
-* Designing workflows
-* Defining business rules
-* Designing architecture
-* Designing the database
-* Designing APIs
-* Defining integrations
-* Identifying edge cases
-* Defining security requirements
-* Defining testing requirements
-* Creating an implementation roadmap
-
-The objective is to make the project:
-
-**COMPLETE → CONSISTENT → IMPLEMENTATION-READY → SAFE TO BUILD**
-
----
-
-# 1. PROJECT INPUT
-
-## Project / Product Name
-
-[PROJECT NAME]
-
-## Project Idea
-
-[DESCRIBE THE IDEA HERE]
-
-## Target Users
-
-[DESCRIBE USERS IF KNOWN]
-
-## Platforms
-
-Examples:
-
-* Web application
-* Mobile application
-* Admin dashboard
-* Customer portal
-* Public website
-* API
-* Desktop application
-* Combination of platforms
-
-Specify:
-
-[PLATFORMS OR "DETERMINE FROM REQUIREMENTS"]
-
-## Technology Stack
-
-If already decided:
-
-[TECHNOLOGY STACK]
-
-Examples:
-
-Backend:
-
-* Laravel
-* Node.js
-* Django
-* .NET
-* Spring Boot
-
-Frontend:
-
-* Vue
-* React
-* Next.js
-* Blade
-* Flutter
-
-Database:
-
-* PostgreSQL
-* MySQL
-* MongoDB
-
-Infrastructure:
-
-* AWS
-* Azure
-* DigitalOcean
-* Cloudflare
-
-If the stack has **not** been decided, do not arbitrarily choose one during requirements analysis.
-
-Recommend technologies only where a technical decision is actually necessary.
-
----
-
-# 2. EXISTING PROJECT / DOCUMENTATION REVIEW
-
-If the repository already contains documentation, specifications, diagrams, screenshots, database designs, API documentation, source code, requirements, notes, or other project material:
-
-**READ AND REVIEW ALL RELEVANT EXISTING MATERIAL FIRST.**
-
-Do not assume existing documentation is correct simply because it exists.
-
-Evaluate it for:
-
-* Missing requirements
-* Contradictions
-* Duplicate concepts
-* Incorrect assumptions
-* Architecture problems
-* Database problems
-* Security weaknesses
-* Missing workflows
-* Missing business rules
-* Missing edge cases
-* Overengineering
-* Under-specification
-* Inconsistent terminology
-* Features that do not belong in MVP
-* Requirements mentioned in one document but missing elsewhere
-
-Prefer improving existing documents rather than creating unnecessary duplicates.
-
----
-
-# 3. UNDERSTAND THE PRODUCT FIRST
-
-Before designing technical architecture, establish exactly what the product is.
-
-Determine:
-
-## Problem
-
-What problem does the product solve?
-
-## Users
-
-Who uses the system?
-
-Identify all important user types.
-
-Examples may include:
-
-* Customers
-* Administrators
-* Staff
-* Managers
-* Operators
-* Vendors
-* Partners
-* Moderators
-* Support staff
-* External systems
-
-Do not assume these roles exist unless appropriate to the project.
-
-## User Goals
-
-For every user type determine:
-
-* What they want to accomplish
-* What information they need
-* What actions they can perform
-* What restrictions apply
-* What successful completion looks like
-
-## Business Goals
-
-Determine:
-
-* Why the product exists
-* What value it provides
-* What business processes it supports
-* How success could be measured
-
----
-
-# 4. DOMAIN DISCOVERY
-
-Identify the core concepts/entities of the product.
-
-Do NOT force generic concepts onto the project.
-
-Instead determine the actual domain model.
-
-For example, depending on the project, concepts might include:
+The purpose of this planning phase is to produce a **complete implementation-ready documentation package** under:
 
 ```text
-User
-Customer
-Organisation
-Product
-Service
-Order
-Booking
-Appointment
-Subscription
-Invoice
-Payment
-Task
-Project
-Listing
-Property
-Course
-Student
-Application
-Document
-Message
-Notification
+docs/
 ```
 
-These are examples only.
-
-Determine the entities appropriate to THIS project.
-
-For every important domain concept document:
-
-* Purpose
-* Meaning
-* Ownership
-* Lifecycle
-* Relationships
-* Business rules
-* Important states
-* Historical requirements
-
-Identify the central domain concept around which the application should be designed.
-
----
-
-# 5. PRODUCT CAPABILITIES
-
-Create a complete feature/capability map.
-
-Group features logically.
-
-For every capability document:
-
-* Purpose
-* User
-* Preconditions
-* Inputs
-* Actions
-* Processing
-* Outputs
-* Success condition
-* Failure conditions
-* Permissions
-* Business rules
-* Dependencies
-* Integrations
-* Notifications
-* Audit requirements
-* MVP or future phase
-
-Avoid describing only obvious happy-path functionality.
-
----
-
-# 6. MVP SCOPE
-
-Define exactly what belongs in:
-
-## MVP
-
-Functionality required for the product to deliver its core value.
-
-## Phase 2
-
-Useful functionality that can safely be postponed.
-
-## Future
-
-Long-term functionality or advanced capabilities.
-
-## Out of Scope
-
-Functionality explicitly excluded from the current product.
-
-Do not remove important functionality merely to make MVP smaller.
-
-At the same time, do not introduce unnecessary enterprise complexity.
-
-Prefer the **smallest architecture and feature set that correctly solves the business problem**.
-
----
-
-# 7. USER ROLES & PERMISSIONS
-
-Identify all system roles.
-
-For every role document:
-
-* Purpose
-* Accessible modules
-* View permissions
-* Create permissions
-* Update permissions
-* Delete permissions
-* Approval permissions
-* Financial permissions
-* Administrative permissions
-* Sensitive-data access
-* Export permissions
-* Reporting permissions
-
-Create a permission matrix where appropriate.
-
-Follow the principle of least privilege.
-
-Do not assume every administrator should automatically have unrestricted access.
-
----
-
-# 8. USER JOURNEYS
-
-Document all major end-to-end user journeys.
-
-Examples:
+You MUST create, review, complete, and cross-check the following documentation structure:
 
 ```text
-User enters system
-↓
-Authentication / identification
-↓
-Performs primary action
-↓
-Provides required information
-↓
-System validates information
-↓
-System performs business process
-↓
-Confirmation
-↓
-Follow-up action
+docs/
+│
+├── 01_PRODUCT_OVERVIEW.md
+├── 02_REQUIREMENTS.md
+├── 03_USER_ROLES_PERMISSIONS.md
+├── 04_USER_STORIES.md
+├── 05_APP_FLOWS.md
+├── 06_NAVIGATION.md
+├── 07_SCREEN_SPECIFICATIONS.md
+├── 08_ARCHITECTURE.md
+├── 09_DATABASE.md
+├── 10_MODELS_MIGRATIONS.md
+├── 11_BUSINESS_RULES.md
+├── 12_STATUS_STATE_MACHINES.md
+├── 13_API_SPECIFICATION.md
+├── 14_VALIDATION_RULES.md
+├── 15_ERROR_HANDLING.md
+├── 16_NOTIFICATIONS.md
+├── 17_BACKGROUND_JOBS.md
+├── 18_INTEGRATIONS.md
+├── 19_SECURITY.md
+├── 20_AUDIT_LOGGING.md
+├── 21_FILE_STORAGE.md
+├── 22_REPORTS_ANALYTICS.md
+├── 23_SETTINGS.md
+├── 24_ENVIRONMENT_CONFIG.md
+├── 25_DEPLOYMENT.md
+├── 26_BACKUP_RECOVERY.md
+├── 27_TESTING.md
+├── 28_SEED_DATA.md
+├── 29_DEFINITION_OF_DONE.md
+├── 30_DEVELOPMENT_ROADMAP.md
+└── 31_TASK_BREAKDOWN.md
 ```
 
-The actual flow must be based on the project.
+These documents are **mandatory planning deliverables**.
 
-For every major journey document:
+Do not replace them with one large planning document.
 
-* Entry point
-* Preconditions
-* Steps
-* Decisions
-* Alternative paths
-* Validation
-* Failure paths
-* Success outcome
-* Notifications
-* Recovery paths
+Do not omit a document simply because the project is small.
 
-Optimize flows for simplicity.
-
-Identify unnecessary steps.
-
----
-
-# 9. SCREEN / PAGE SPECIFICATIONS
-
-Identify all required screens/pages/interfaces.
-
-For every important screen document:
-
-## Purpose
-
-Why does this screen exist?
-
-## Users
-
-Who can access it?
-
-## Inputs
-
-What information does the user provide?
-
-## Information Displayed
-
-What information does the system show?
-
-## Actions
-
-What can the user do?
-
-## Validation
-
-What rules apply?
-
-## States
-
-Document:
-
-* Initial state
-* Loading state
-* Empty state
-* Error state
-* Validation-error state
-* Permission-denied state
-* Success state
-* Disabled state where applicable
-
-## Navigation
-
-Where can the user go from this screen?
-
-## Permissions
-
-Who can see or perform each important action?
-
----
-
-# 10. NAVIGATION / INFORMATION ARCHITECTURE
-
-Design the navigation structure for each relevant application surface.
-
-Examples:
-
-* Customer application
-* Admin dashboard
-* Staff portal
-* Mobile application
-* Public website
-
-Group functionality logically.
-
-Navigation should reflect how users think about the product rather than simply mirroring database tables.
-
-Identify:
-
-* Primary navigation
-* Secondary navigation
-* Contextual actions
-* Settings
-* Account/profile areas
-* Administrative sections
-
----
-
-# 11. BUSINESS RULES
-
-Create a comprehensive business-rules specification.
-
-Business rules should describe what the system must enforce.
-
-Example structure:
+If a subject genuinely does not apply, create the document and explicitly state:
 
 ```text
-BR-001
-
-Rule:
-[Business rule]
+STATUS: NOT APPLICABLE
 
 Reason:
-[Why this rule exists]
-
-Applies to:
-[Feature/process/entity]
-
-Enforcement:
-[Where/how it should be enforced]
-
-Exceptions:
-[Allowed exceptions]
+[Explain why this area does not apply to this project.]
 ```
 
-Look for rules involving:
-
-* Ownership
-* Eligibility
-* Status
-* Availability
-* Limits
-* Pricing
-* Dates
-* Deadlines
-* Approvals
-* Payments
-* Cancellations
-* Refunds
-* Duplicates
-* Permissions
-* Capacity
-* Dependencies
-* Historical records
-
-Do not silently invent business policy.
-
-Where a decision is necessary, make a sensible recommendation and clearly document it as a proposed decision.
+Do NOT invent functionality simply to populate a document.
 
 ---
 
-# 12. STATE MACHINES
+# 01_PRODUCT_OVERVIEW.md
 
-Identify entities that have meaningful lifecycles.
+Define the product at the highest level.
 
-Examples might include:
+Include:
 
-```text
-Order
-Booking
-Application
-Payment
-Subscription
-Task
-Invoice
-Approval
-Delivery
-Appointment
-Ticket
-Account
-```
+- Product name
+- Product vision
+- Problem statement
+- Proposed solution
+- Target users
+- User problems
+- Business objectives
+- Product objectives
+- Core value proposition
+- Primary capabilities
+- Platforms
+- Business model if known
+- Stakeholders
+- Assumptions
+- Constraints
+- MVP summary
+- Phase 2 summary
+- Future possibilities
+- Out-of-scope functionality
+- Success criteria
+- Product terminology/glossary
 
-Only create state machines where they provide actual value.
-
-For each state machine define:
-
-* Every valid state
-* Initial state
-* Terminal states
-* Valid transitions
-* Invalid transitions
-* Who can trigger transitions
-* System-triggered transitions
-* Time-triggered transitions
-* Preconditions
-* Side effects
-* Notifications
-* Audit requirements
-
-Avoid vague status fields without clearly defined transition rules.
+A developer reading this document should understand **what is being built and why** before reading technical specifications.
 
 ---
 
-# 13. DATABASE ARCHITECTURE
+# 02_REQUIREMENTS.md
 
-Design the conceptual database architecture.
+Create the master requirements specification.
 
-Identify the entities required by the domain.
+Separate requirements into:
 
-For every model/entity document:
+## Functional Requirements
 
-* Purpose
-* Fields
-* Data types
-* Required fields
-* Nullable fields
-* Defaults
-* Relationships
-* Foreign keys
-* Unique constraints
-* Indexes
-* Status fields
-* Ownership
-* Audit fields
-* Soft deletion requirements
-* Historical-data requirements
+Use identifiers:
 
-Review the architecture for:
+```text
+FR-001
+FR-002
+FR-003
+```
 
-* Duplicate records
-* Race conditions
-* Orphan records
-* Incorrect relationships
-* Missing constraints
-* Missing indexes
-* Incorrect cascading deletes
-* Excessive nullable fields
-* Data duplication
-* Poor normalization
-* Unnecessary normalization
-* Historical-data problems
-* Scalability problems
+For each requirement document:
 
-Do not create actual migrations during this phase.
+- Requirement
+- Description
+- Actor
+- Preconditions
+- Expected behavior
+- Dependencies
+- Priority
+- MVP / Phase 2 / Future
+- Related business rules
+
+## Non-Functional Requirements
+
+Use:
+
+```text
+NFR-001
+NFR-002
+```
+
+Cover where applicable:
+
+- Performance
+- Security
+- Availability
+- Reliability
+- Scalability
+- Accessibility
+- Responsive behavior
+- Compatibility
+- Logging
+- Monitoring
+- Backup
+- Recovery
+- Privacy
+- Data retention
+- Localization
+- Time zones
+- Concurrent usage
+
+Clearly distinguish:
+
+```text
+CONFIRMED
+INFERRED
+RECOMMENDED
+OPEN DECISION
+```
+
+Never silently convert assumptions into requirements.
 
 ---
 
-# 14. DATA OWNERSHIP
+# 03_USER_ROLES_PERMISSIONS.md
 
-For every important entity determine:
+Identify every system actor and role.
 
-* Who owns the data?
-* Who creates it?
-* Who can modify it?
-* Who can delete it?
-* Who can view it?
-* Can ownership change?
-* What happens when the owner is deleted?
-* What happens when an organisation/account is deleted?
-* What data must be retained?
-* What data should be anonymized?
-* What data can never be physically deleted?
+For each role define:
 
----
+- Purpose
+- Responsibilities
+- Accessible modules
+- Read permissions
+- Create permissions
+- Update permissions
+- Delete permissions
+- Approval permissions
+- Administrative permissions
+- Financial permissions
+- Export permissions
+- Sensitive-data access
 
-# 15. HISTORICAL DATA & IMMUTABILITY
-
-Determine what information must remain historically accurate even when source data changes.
-
-Examples:
-
-If:
-
-```text
-Price = 100
-```
-
-and later becomes:
-
-```text
-Price = 120
-```
-
-an old completed transaction may still need to show:
-
-```text
-Price paid = 100
-```
-
-Identify values that must be snapshotted.
+Create a permission matrix.
 
 Consider:
 
-* Prices
-* Names
-* Addresses
-* Product/service descriptions
-* Tax
-* Discounts
-* Configuration
-* Assignments
-* User information
-* Transaction information
-* Contract information
-* Status history
-
-Document what data is:
-
-* Mutable
-* Immutable
-* Snapshotted
-* Versioned
-* Audited
+- Ownership
+- Record-level access
+- Organisation-level access
+- Self-service access
+- Administrative override
+- Least privilege
+- Role inheritance if appropriate
 
 ---
 
-# 16. CONCURRENCY & RACE CONDITIONS
+# 04_USER_STORIES.md
 
-Determine whether multiple users/processes can modify the same limited resource simultaneously.
+Convert requirements into user-centered stories.
 
-Examples:
-
-* Inventory
-* Seats
-* Appointments
-* Reservations
-* Stock
-* Coupons
-* Credits
-* Wallet balances
-* Limited offers
-* Approval actions
-* Number sequences
-
-For each concurrency-sensitive process define:
-
-* Transaction boundaries
-* Database constraints
-* Locking strategy
-* Idempotency
-* Conflict handling
-* Retry behavior
-* Timeout behavior
-
-Never rely only on frontend validation to prevent concurrency problems.
-
----
-
-# 17. PAYMENTS & FINANCIAL OPERATIONS
-
-If the system contains payments, billing, subscriptions, refunds, credits, invoices, or other financial operations, document the complete lifecycle.
-
-Possible conceptual flow:
+Use identifiers:
 
 ```text
-Transaction initiated
-↓
-Payment request created
-↓
-Payment provider
-↓
-Provider processing
-↓
-Verified server-side confirmation
-↓
-Business transaction finalized
-↓
-Receipt/invoice/confirmation
-↓
-Notifications
+US-001
+US-002
+US-003
 ```
+
+Format:
+
+```text
+As a [user],
+I want to [action],
+so that [benefit].
+```
+
+For every important story include:
+
+- User Story ID
+- Actor
+- Story
+- Preconditions
+- Acceptance criteria
+- Business rules
+- Validation
+- Failure scenarios
+- Permissions
+- Dependencies
+- Priority
+- MVP/Phase
+- Related requirements
+
+Use acceptance criteria that can eventually be tested.
+
+---
+
+# 05_APP_FLOWS.md
+
+Document all important end-to-end workflows.
+
+Examples depend on the project.
+
+Document flows such as:
+
+- Registration
+- Authentication
+- Primary customer journey
+- Creation workflows
+- Purchase/booking/order workflows
+- Approval workflows
+- Administrative workflows
+- Cancellation
+- Refund
+- Recovery
+- Account management
+
+Use clear flows such as:
+
+```text
+Start
+↓
+Action
+↓
+Validation
+↓
+Decision
+├── Success → Continue
+└── Failure → Recovery
+↓
+Completion
+```
+
+For every flow include:
+
+- Trigger
+- Actor
+- Preconditions
+- Main flow
+- Alternative flows
+- Failure flows
+- Completion state
+- Side effects
+- Notifications
+- Related screens
+- Related APIs
+- Related business rules
+
+---
+
+# 06_NAVIGATION.md
+
+Define application information architecture.
+
+Cover every relevant interface:
+
+- Public application
+- Customer application
+- Mobile application
+- Admin dashboard
+- Staff portal
+- Partner portal
+
+Document:
+
+- Main navigation
+- Secondary navigation
+- Menu hierarchy
+- Route/page hierarchy
+- Permission visibility
+- Entry points
+- Breadcrumb behavior if applicable
+- Profile/account navigation
+- Settings navigation
+- Contextual actions
+
+Navigation should represent the **user's mental model**, not simply database entities.
+
+---
+
+# 07_SCREEN_SPECIFICATIONS.md
+
+Create specifications for every important screen.
+
+Assign IDs:
+
+```text
+SCR-001
+SCR-002
+SCR-003
+```
+
+For each screen define:
+
+- Screen name
+- Purpose
+- Users
+- Entry conditions
+- Information displayed
+- Inputs
+- Actions
+- Validation
+- Permissions
+- Business rules
+- Navigation destinations
+
+Document UI states:
+
+- Initial
+- Loading
+- Loaded
+- Empty
+- Error
+- Validation error
+- Permission denied
+- Disabled
+- Success
+
+Document tables where relevant:
+
+- Columns
+- Filters
+- Search
+- Sorting
+- Pagination
+- Row actions
+- Bulk actions
+
+Document forms:
+
+- Fields
+- Types
+- Required/optional
+- Defaults
+- Validation
+- Conditional fields
+- Help text where necessary
+
+---
+
+# 08_ARCHITECTURE.md
+
+Define the high-level system architecture.
+
+Include:
+
+- Architecture overview
+- System components
+- Frontend architecture
+- Backend architecture
+- Database architecture
+- API architecture
+- Authentication architecture
+- Authorization architecture
+- File architecture
+- Integration architecture
+- Notification architecture
+- Queue architecture
+- Cache architecture where needed
+- Scheduled processing
+- Deployment architecture
+
+Explain major architectural decisions.
+
+Prefer the simplest architecture that correctly handles the requirements.
+
+Do not introduce unnecessary microservices, queues, caches, event buses, search clusters, or other infrastructure without justification.
+
+Include diagrams using Mermaid/text where useful.
+
+---
+
+# 09_DATABASE.md
+
+Define the conceptual and logical database design.
+
+Include:
+
+- Entity overview
+- ERD
+- Relationships
+- Ownership
+- Cardinality
+- Foreign-key strategy
+- Referential integrity
+- Unique constraints
+- Index strategy
+- Historical data
+- Soft deletion
+- Audit requirements
+- Concurrency considerations
 
 Analyze:
 
-* Success
-* Failure
-* Timeout
-* Cancellation
-* Duplicate callback
-* Late callback
-* Browser/app closed
-* Refund
-* Partial refund
-* Reconciliation
-* Duplicate transaction
-* Transaction IDs
-* Idempotency
-* Currency
-* Fees
-* Taxes where applicable
-
-Never assume a payment provider unless one has been selected.
-
-The frontend success page must not automatically be treated as authoritative proof of payment where server-side verification is available.
+- Duplicate-record risks
+- Orphan records
+- Race conditions
+- Incorrect cascading deletes
+- Historical accuracy
+- Data integrity
+- Query performance
 
 ---
 
-# 18. INTEGRATIONS
+# 10_MODELS_MIGRATIONS.md
 
-Identify every external integration.
+Specify every expected model/table without writing actual migration code.
 
-Examples:
+For each model define:
 
-* Payment providers
-* Email
-* SMS
-* WhatsApp
-* Push notifications
-* Maps
-* GPS
-* Cloud storage
-* Authentication providers
-* Analytics
-* Accounting systems
-* CRMs
-* External APIs
-* Government systems
-* AI services
+```text
+Model
+Purpose
+Table
+Fields
+Data Types
+Required/Nullable
+Defaults
+Primary Key
+Foreign Keys
+Relationships
+Indexes
+Unique Constraints
+Status Fields
+Soft Deletes
+Timestamps
+Audit Requirements
+Historical/Snapshot Fields
+```
 
-For every integration document:
+Also document expected migration order based on foreign-key dependencies.
 
-* Purpose
-* Data sent
-* Data received
-* Authentication
-* API requirements
-* Failure handling
-* Timeout handling
-* Retry strategy
-* Rate limits
-* Webhooks/callbacks
-* Idempotency
-* Logging
-* Security
-* Privacy implications
-* Fallback behavior
+Example:
 
-Do not invent providers that have not been selected.
+```text
+users
+↓
+organisations
+↓
+products
+↓
+orders
+↓
+order_items
+```
+
+The actual order must come from the project's domain.
 
 ---
 
-# 19. NOTIFICATIONS
+# 11_BUSINESS_RULES.md
 
-Determine which events require communication.
+Create the authoritative business-rule catalogue.
 
-Possible channels:
+Use:
 
-* In-app
-* Email
-* SMS
-* WhatsApp
-* Push notification
+```text
+BR-001
+BR-002
+BR-003
+```
+
+For each rule:
+
+- Rule
+- Reason
+- Applies to
+- Preconditions
+- Enforcement
+- Exceptions
+- Failure behavior
+- Related requirements
+- Related validation
+- Related tests
+
+Business rules must be explicit enough that developers do not have to guess.
+
+---
+
+# 12_STATUS_STATE_MACHINES.md
+
+Identify every entity with a meaningful lifecycle.
+
+For each define:
+
+- Initial state
+- Valid states
+- Terminal states
+- Valid transitions
+- Invalid transitions
+- Trigger
+- Actor
+- Preconditions
+- Side effects
+- Automatic transitions
+- Time-based transitions
+
+Example only:
+
+```text
+DRAFT
+  ↓
+PENDING
+  ↓
+APPROVED
+  ↓
+COMPLETED
+```
+
+Do not copy generic statuses into the project.
+
+Determine the states from actual business requirements.
+
+---
+
+# 13_API_SPECIFICATION.md
+
+Define the expected application API.
+
+Group endpoints by domain/module.
+
+For each endpoint document:
+
+```text
+API ID
+Purpose
+Method
+Path
+Authentication
+Permission
+Request
+Validation
+Response
+Errors
+Side Effects
+Idempotency
+Rate Limiting
+```
+
+Include:
+
+- Authentication APIs
+- CRUD APIs
+- Workflow APIs
+- Search APIs
+- Reporting APIs
+- Integration/webhook APIs
+
+The API should model business operations rather than simply exposing database tables.
+
+---
+
+# 14_VALIDATION_RULES.md
+
+Create the centralized validation specification.
+
+For every important input define:
+
+- Field
+- Type
+- Required/optional
+- Minimum
+- Maximum
+- Format
+- Allowed values
+- Conditional requirements
+- Uniqueness
+- Cross-field validation
+- Database-dependent validation
+- Business-rule validation
+- Error message expectation
+
+Separate:
+
+```text
+Frontend convenience validation
+
+from
+
+Authoritative backend validation
+```
+
+Critical rules must never depend exclusively on frontend validation.
+
+---
+
+# 15_ERROR_HANDLING.md
+
+Define the application's error strategy.
+
+Cover:
+
+- Validation errors
+- Authentication errors
+- Authorization errors
+- Not found
+- Conflict
+- Duplicate submission
+- Business-rule violation
+- Rate limiting
+- Integration failure
+- Payment failure
+- Network failure
+- Database failure
+- File failure
+- Background-job failure
+- Unexpected server errors
+
+For each category define:
+
+- Expected behavior
+- User-facing message
+- API response
+- Logging
+- Retry behavior
+- Recovery behavior
+- Alerting where appropriate
+
+Do not expose sensitive technical details to end users.
+
+---
+
+# 16_NOTIFICATIONS.md
+
+Create the notification catalogue.
 
 For every notification define:
 
 ```text
+NOT-001
+
 Event
 Recipient
 Channel
-Template
-Required data
 Trigger
-Retry policy
-Failure handling
+Required data
+Template purpose
 Priority
+Retry
+Failure behavior
+Audit requirement
 ```
 
-Separate transactional notifications from marketing communications.
+Possible channels:
+
+- In-app
+- Email
+- SMS
+- WhatsApp
+- Push
+
+Separate transactional and marketing notifications.
 
 ---
 
-# 20. FILES & DOCUMENTS
+# 17_BACKGROUND_JOBS.md
 
-If users or the system upload/generate files, define:
+Identify asynchronous work.
 
-* Supported file types
-* Maximum sizes
-* Storage location
-* Access control
-* Public/private status
-* Naming
-* Virus/security scanning where appropriate
-* Expiration
-* Download authorization
-* Deletion
-* Retention
-* Generated documents
-* Versioning
+For each job define:
 
-Examples include:
+```text
+JOB-001
 
-* Images
-* PDFs
-* Contracts
-* Receipts
-* Certificates
-* Reports
-* Attachments
-* Identity documents
+Purpose
+Trigger
+Payload
+Queue
+Priority
+Retries
+Timeout
+Idempotency
+Failure behavior
+Logging
+Monitoring
+```
 
----
+Possible jobs include:
 
-# 21. SEARCH
+- Email
+- Notifications
+- File generation
+- Imports
+- Exports
+- Image processing
+- Integration synchronization
+- AI processing
+- Reports
 
-If the product requires search, document:
-
-* Searchable entities
-* Search fields
-* Filters
-* Sorting
-* Pagination
-* Permissions
-* Empty results
-* Performance requirements
-* Fuzzy search requirements
-* Full-text search requirements
-* Indexing requirements
-
-Do not introduce dedicated search infrastructure unless the expected scale/functionality requires it.
+Only introduce background jobs where appropriate.
 
 ---
 
-# 22. REPORTING & ANALYTICS
+# 18_INTEGRATIONS.md
 
-Determine what stakeholders need to measure.
+Document every external dependency.
 
-Identify:
+For each integration:
 
-* Dashboard metrics
-* Operational reports
-* Financial reports
-* User reports
-* Activity reports
-* Export requirements
-* Date filters
-* Status filters
-* Aggregations
-* Historical reporting
+- Purpose
+- Provider if selected
+- Authentication
+- Data sent
+- Data received
+- API operations
+- Webhooks
+- Verification
+- Rate limits
+- Timeout
+- Retry
+- Idempotency
+- Failure handling
+- Security
+- Privacy
+- Logging
+- Sandbox/test requirements
 
-For every metric define exactly how it is calculated.
-
-Avoid ambiguous metrics such as "active users" without defining what "active" means.
+Do not invent providers where the product owner has not selected one.
 
 ---
 
-# 23. AUDIT LOGGING
+# 19_SECURITY.md
 
-Identify actions requiring audit records.
+Perform a complete security design review.
 
-Consider:
+Cover where applicable:
 
-* Authentication events
-* Permission changes
-* Financial changes
-* Status changes
-* Administrative changes
-* Sensitive-data access
-* Deletions
-* Refunds
-* Approvals
-* Configuration changes
+- Authentication
+- Authorization
+- Password security
+- OTP
+- Sessions
+- Tokens
+- Rate limiting
+- Brute-force prevention
+- CSRF
+- XSS
+- SQL injection
+- IDOR
+- Input validation
+- File security
+- API security
+- Webhook security
+- Payment security
+- Secrets
+- Encryption
+- Data isolation
+- Sensitive data
+- Account recovery
+- Admin security
+- Auditability
+- Abuse prevention
 
-For each audit record consider:
+Identify threats specific to the project's domain.
+
+---
+
+# 20_AUDIT_LOGGING.md
+
+Define what actions require permanent audit history.
+
+For each event consider:
 
 ```text
 Actor
 Action
 Entity
 Entity ID
-Old value
-New value
+Old values
+New values
 Timestamp
-IP/device where appropriate
 Reason
+IP
+Device
 Metadata
 ```
 
-Audit logs should not become an uncontrolled duplicate of the entire database.
+Define:
+
+- Audited actions
+- Who can view audit logs
+- Search/filter requirements
+- Retention
+- Sensitive-data handling
+- Immutability expectations
 
 ---
 
-# 24. EDGE CASES
+# 21_FILE_STORAGE.md
 
-Create a comprehensive edge-case specification.
+If files are involved, define:
 
-Analyze every critical workflow.
+- File categories
+- Allowed formats
+- Maximum size
+- Storage
+- Naming
+- Directory/object organization
+- Public/private status
+- Authorization
+- Upload validation
+- Malware considerations
+- Download
+- Preview
+- Deletion
+- Retention
+- Generated files
+- Temporary files
+- Backups
 
-For every edge case document:
+If the system does not use files, document why this is not applicable.
+
+---
+
+# 22_REPORTS_ANALYTICS.md
+
+Define all reporting and analytics requirements.
+
+For each report:
+
+- Report ID
+- Purpose
+- Audience
+- Data source
+- Columns/metrics
+- Calculation definitions
+- Filters
+- Grouping
+- Sorting
+- Date range
+- Permissions
+- Export options
+
+Define dashboard KPIs precisely.
+
+Never use ambiguous metrics without defining their calculation.
+
+---
+
+# 23_SETTINGS.md
+
+Identify configurable business/system settings.
+
+For each setting:
+
+- Setting key
+- Purpose
+- Type
+- Default
+- Allowed values
+- Who can change it
+- Validation
+- Effect
+- Audit requirement
+- Environment-specific or business-configurable
+
+Do not turn values into settings unless they genuinely need runtime configuration.
+
+---
+
+# 24_ENVIRONMENT_CONFIG.md
+
+Document required configuration categories.
+
+Examples:
 
 ```text
-Scenario
-Trigger
-Expected behavior
-User message
-System action
-Data impact
-Recovery behavior
+Application
+Database
+Cache
+Queue
+Mail
+Storage
+Authentication
+External APIs
+Payment
+Notifications
 Logging
-Notification
+Monitoring
 ```
 
-Look specifically for:
+For each variable/configuration item define:
 
-* Duplicate submissions
-* Concurrent actions
-* Network failure
-* User closes application
-* Timeout
-* Invalid status
-* Deleted dependency
-* Changed dependency
-* Expired data
-* Partial completion
-* Third-party failure
-* Retry
-* Duplicate callbacks
-* Unauthorized actions
-* Missing information
-* Unexpected input
-* Cancellation
-* Reversal
-* Recovery after failure
+- Purpose
+- Required/optional
+- Example format without real secrets
+- Development behavior
+- Testing behavior
+- Staging behavior
+- Production behavior
 
-Do not document only the happy path.
+Never place actual secrets in documentation.
 
 ---
 
-# 25. SECURITY REVIEW
+# 25_DEPLOYMENT.md
 
-Perform a security architecture review.
+Define the deployment strategy.
 
-At minimum consider:
+Cover:
 
-* Authentication
-* Authorization
-* Role permissions
-* Session security
-* Password security
-* OTP security if applicable
-* Rate limiting
-* Brute-force protection
-* API security
-* Input validation
-* File upload security
-* Data isolation
-* Sensitive-data protection
-* Encryption
-* Secrets management
-* Payment security
-* Webhook verification
-* CSRF
-* XSS
-* SQL injection
-* IDOR
-* Mass assignment
-* Enumeration attacks
-* Audit logs
-* Abuse prevention
-* Account recovery
-* Token expiration
-* Logging of sensitive data
+- Environments
+- Build process
+- Deployment process
+- Database migration strategy
+- Static assets
+- Queues
+- Scheduled jobs
+- File storage
+- HTTPS
+- Domain/DNS
+- Environment variables
+- Health checks
+- Logging
+- Monitoring
+- Rollback
+- Zero/minimal downtime where appropriate
 
-Security requirements should be proportional to the actual risks of the product.
+Keep infrastructure proportional to expected project scale.
 
 ---
 
-# 26. PRIVACY & DATA PROTECTION
+# 26_BACKUP_RECOVERY.md
 
-Identify:
+Define:
 
-* Personal information collected
-* Sensitive information collected
-* Why each field is required
-* Data retention
-* Data deletion
-* Account deletion
-* Consent
-* Marketing consent
-* Third-party data sharing
-* Data exports
-* Access restrictions
+- What is backed up
+- Database backup
+- File backup
+- Frequency
+- Retention
+- Encryption
+- Backup storage
+- Restore process
+- Restore testing
+- Disaster scenarios
+- Recovery Point Objective if appropriate
+- Recovery Time Objective if appropriate
 
-Do not collect information simply because it might become useful later.
-
----
-
-# 27. API SPECIFICATION
-
-If APIs are required, define them conceptually.
-
-For every endpoint/resource document:
-
-* Purpose
-* Method
-* Path
-* Authentication
-* Permissions
-* Request fields
-* Validation
-* Response structure
-* Error responses
-* Pagination
-* Filtering
-* Sorting
-* Idempotency where applicable
-* Rate limits
-* Side effects
-
-Do not implement the API during planning.
-
-Ensure API design follows the business/domain model rather than merely exposing database tables.
+A backup strategy is incomplete unless restoration is also considered.
 
 ---
 
-# 28. BACKGROUND PROCESSING
+# 27_TESTING.md
 
-Identify operations that should not block normal user requests.
+Create the complete test strategy.
 
-Examples:
+Map testing back to requirements and business rules.
 
-* Emails
-* Notifications
-* PDF generation
-* Image processing
-* Data imports
-* Reports
-* Webhook processing
-* Synchronization
-* AI processing
-* Large exports
+Include:
 
-Determine:
+- Unit tests
+- Feature tests
+- Integration tests
+- API tests
+- Validation tests
+- Permission tests
+- State-transition tests
+- Database-constraint tests
+- Concurrency tests
+- Security tests
+- File tests
+- Notification tests
+- Background-job tests
+- Integration tests
+- Failure-path tests
+- End-to-end tests
+- UAT
 
-* Queue requirements
-* Retry strategy
-* Failure handling
-* Dead-letter handling where appropriate
-* Idempotency
-* Monitoring
-
----
-
-# 29. SCHEDULED JOBS
-
-Identify time-based processes.
-
-Examples:
-
-* Expiration
-* Reminders
-* Reconciliation
-* Cleanup
-* Scheduled reports
-* Subscription renewal
-* Data synchronization
-* Status transitions
-
-For each scheduled process document:
-
-* Frequency
-* Selection criteria
-* Action
-* Failure handling
-* Retry behavior
-* Idempotency
+Every critical business rule and edge case should have a corresponding test expectation.
 
 ---
 
-# 30. NON-FUNCTIONAL REQUIREMENTS
+# 28_SEED_DATA.md
 
-Explicitly define appropriate requirements for:
+Define realistic seed/demo data.
 
-## Performance
+Include:
 
-Expected response times and heavy operations.
+- Roles
+- Permissions
+- Users
+- Core entities
+- Relationships
+- Status variations
+- Successful scenarios
+- Failure scenarios
+- Edge cases
 
-## Scalability
+Specify dependencies/order.
 
-Expected users, transactions, data growth, and concurrency.
+Do not write actual seed code yet.
 
-## Availability
-
-Expected uptime and critical workflows.
-
-## Reliability
-
-Recovery from failures.
-
-## Security
-
-Protection appropriate to the data and business.
-
-## Logging
-
-Application and operational logging.
-
-## Monitoring
-
-Health checks and important metrics.
-
-## Backup
-
-Backup frequency and coverage.
-
-## Recovery
-
-Recovery objectives where appropriate.
-
-## Accessibility
-
-Accessibility expectations.
-
-## Responsive Design
-
-Supported device sizes.
-
-## Browser / Device Support
-
-Supported platforms.
-
-## Localization
-
-Languages, currencies, dates, time zones where relevant.
-
-Do not invent enterprise-scale requirements for a small product without justification.
+The seed data should allow developers and testers to exercise the major application flows.
 
 ---
 
-# 31. TESTING STRATEGY
+# 29_DEFINITION_OF_DONE.md
 
-Create a complete testing strategy.
+Define global completion requirements.
 
-Consider:
-
-* Unit tests
-* Feature tests
-* Integration tests
-* API tests
-* Permission tests
-* Validation tests
-* Database constraint tests
-* Concurrency tests
-* Security tests
-* End-to-end tests
-* UI tests
-* Payment tests
-* Webhook tests
-* Notification tests
-* File tests
-* Failure-path tests
-* Regression tests
-* User acceptance testing
-
-Every important business rule should have corresponding test coverage.
-
-Every important edge case should have corresponding test coverage.
-
----
-
-# 32. DEMO / SEED DATA
-
-Define realistic demo/seed data required to test the application.
-
-Include representative:
-
-* Users
-* Roles
-* Permissions
-* Core domain entities
-* Transactions
-* Statuses
-* Relationships
-* Successful scenarios
-* Failed scenarios
-* Edge cases
-
-Do not generate application seed code yet.
-
-Document only the required data and relationships.
-
----
-
-# 33. ARCHITECTURE DECISIONS
-
-Maintain an architecture/product decision log.
-
-Every important decision should use:
+Every applicable feature should satisfy:
 
 ```text
-Decision ID:
-
-Decision:
-
-Context:
-
-Reason:
-
-Alternatives considered:
-
-Consequences:
-
-Risks:
-
-Status:
-PROPOSED / ACCEPTED / REJECTED / DEFERRED
+□ Requirement implemented
+□ Acceptance criteria passed
+□ UI completed
+□ Responsive behavior verified
+□ Validation implemented
+□ Authentication verified
+□ Authorization verified
+□ Business rules enforced
+□ Database constraints implemented
+□ Error handling completed
+□ Loading states completed
+□ Empty states completed
+□ Security reviewed
+□ Audit logging implemented where applicable
+□ Notifications implemented where applicable
+□ Background processing verified where applicable
+□ Tests written
+□ Edge cases tested
+□ Demo data available
+□ Documentation updated
 ```
 
-Examples of decisions might include:
-
-* Authentication approach
-* Core domain model
-* Pricing model
-* Data ownership
-* Payment confirmation strategy
-* Storage architecture
-* Notification architecture
-* State-management approach
-
-Do not make arbitrary decisions without documenting the reasoning.
+Also create feature-specific Definition of Done requirements where necessary.
 
 ---
 
-# 34. ASSUMPTIONS & OPEN QUESTIONS
+# 30_DEVELOPMENT_ROADMAP.md
 
-Maintain separate lists for:
+Convert the completed architecture into a logical implementation sequence.
 
-## Confirmed Requirements
+Determine phases from actual dependencies.
 
-Explicitly provided by the product owner/documentation.
-
-## Inferred Requirements
-
-Requirements strongly implied by existing functionality.
-
-## Recommended Decisions
-
-Architecture/product decisions recommended because they are necessary or beneficial.
-
-## Open Questions
-
-Questions requiring product/business confirmation.
-
-Do not silently convert assumptions into confirmed requirements.
-
----
-
-# 35. REQUIREMENTS TRACEABILITY
-
-Create a requirements coverage matrix.
-
-For every major requirement identify:
-
-```text
-Requirement
-Source
-Business Rule
-User Flow
-Screen
-Database Entity
-API
-Permission
-Test
-Status
-```
-
-The purpose is to ensure important requirements do not disappear between product planning and implementation.
-
----
-
-# 36. PLANNING REVIEW
-
-Create a final planning review containing:
-
-## A. Requirements Coverage
-
-Identify whether every major requirement has been documented.
-
-## B. Missing Requirements
-
-Identify missing business/product decisions.
-
-## C. Contradictions
-
-Identify contradictions between specifications.
-
-## D. Architecture Risks
-
-Identify technical architecture risks.
-
-## E. Database Risks
-
-Identify:
-
-* Missing relationships
-* Missing constraints
-* Missing indexes
-* Race conditions
-* Historical-data issues
-* Duplicate-data risks
-* Incorrect deletion behavior
-
-## F. Security Risks
-
-Identify important vulnerabilities or missing controls.
-
-## G. UX Problems
-
-Identify:
-
-* Unnecessary steps
-* Confusing flows
-* Missing feedback
-* Missing error handling
-* Inconsistent navigation
-
-## H. Integration Risks
-
-Identify external dependencies and failure scenarios.
-
-## I. Overengineering
-
-Identify features or infrastructure that should move out of MVP.
-
-## J. Under-specification
-
-Identify areas developers could interpret differently.
-
-## K. Final Recommendations
-
-Prioritize recommendations:
-
-```text
-CRITICAL
-HIGH
-MEDIUM
-LOW
-```
-
----
-
-# 37. DEVELOPMENT ROADMAP
-
-Once requirements are stable, create an implementation roadmap.
-
-Recommended structure:
+Possible structure:
 
 ```text
 PHASE 1 — FOUNDATION
-
-TASK-001 ...
-TASK-002 ...
-TASK-003 ...
-
 PHASE 2 — CORE DOMAIN
-
-TASK-010 ...
-TASK-011 ...
-
-PHASE 3 — PRIMARY USER WORKFLOW
-
-TASK-020 ...
-TASK-021 ...
-
+PHASE 3 — PRIMARY WORKFLOWS
 PHASE 4 — ADMINISTRATION
-
-TASK-030 ...
-TASK-031 ...
-
 PHASE 5 — INTEGRATIONS
-
-TASK-040 ...
-TASK-041 ...
-
 PHASE 6 — REPORTING
-
-TASK-050 ...
-
-PHASE 7 — HARDENING
-
-TASK-060 Security review
-TASK-061 Performance
-TASK-062 Edge cases
-TASK-063 UAT
+PHASE 7 — HARDENING & RELEASE
 ```
 
-The actual phases must be derived from the project.
+Do not blindly use these phases.
 
-Do not force this example structure onto every project.
+For every phase define:
+
+- Objective
+- Dependencies
+- Features
+- Expected outcome
+- Exit criteria
+
+Implementation order should respect dependencies.
 
 ---
 
-# 38. TASK BREAKDOWN
+# 31_TASK_BREAKDOWN.md
 
-Break implementation into small, independently testable tasks.
+This document must convert the entire specification into **small, independently implementable and testable development tasks**.
 
-Each task should contain:
+Use IDs:
+
+```text
+TASK-001
+TASK-002
+TASK-003
+```
+
+For every task define:
 
 ```text
 Task ID
 
 Title
 
+Module
+
 Purpose
+
+Requirements Covered
+
+User Stories Covered
 
 Dependencies
 
-Requirements
-
-Business Rules
-
-Database Changes
+Database Work
 
 Backend Work
 
-Frontend Work
+API Work
 
-Permissions
+Frontend Work
 
 Validation
 
-Edge Cases
+Permissions
+
+Business Rules
+
+Error Handling
+
+Notifications
+
+Audit Requirements
 
 Tests
 
@@ -1475,329 +1159,320 @@ Acceptance Criteria
 Definition of Done
 ```
 
-Order tasks according to dependencies.
-
-Foundational entities should normally be implemented before features that depend on them.
-
-Avoid enormous tasks such as:
-
-```text
-TASK-001 Build entire admin dashboard
-```
-
-Prefer smaller independently testable tasks.
-
----
-
-# 39. DEFINITION OF DONE
-
-Every feature must have a measurable definition of done.
-
-Example:
-
-```text
-□ Requirements implemented
-□ UI completed
-□ Responsive behavior verified
-□ Validation implemented
-□ Authentication verified
-□ Authorization verified
-□ Business rules enforced
-□ Database constraints implemented
-□ Concurrency handled where applicable
-□ Error handling implemented
-□ Empty states implemented
-□ Loading states implemented
-□ Security reviewed
-□ Audit logging implemented where required
-□ Notifications implemented where required
-□ Integration failures handled
-□ Tests written
-□ Edge cases tested
-□ Demo data available
-□ Documentation updated
-□ Acceptance criteria passed
-```
-
-Adapt the checklist according to the feature.
-
----
-
-# 40. DOCUMENTATION STRUCTURE
-
-Review the project's existing documentation structure before creating files.
-
-Do not blindly create duplicate documents.
-
-A possible structure is:
-
-```text
-docs/
-
-01_PRODUCT_OVERVIEW.md
-02_MVP_SCOPE.md
-03_REQUIREMENTS.md
-04_ROLES_PERMISSIONS.md
-05_USER_JOURNEYS.md
-06_ADMIN_FLOWS.md
-07_NAVIGATION.md
-08_SCREEN_SPECIFICATIONS.md
-09_BUSINESS_RULES.md
-10_STATE_MACHINES.md
-11_DATABASE_ARCHITECTURE.md
-12_DATA_DICTIONARY.md
-13_API_SPECIFICATION.md
-14_INTEGRATIONS.md
-15_NOTIFICATIONS.md
-16_SECURITY.md
-17_PRIVACY.md
-18_AUDIT_LOGGING.md
-19_REPORTING.md
-20_EDGE_CASES.md
-21_TESTING.md
-22_SEED_DATA.md
-23_NON_FUNCTIONAL_REQUIREMENTS.md
-24_DEPLOYMENT.md
-25_BACKUP_RECOVERY.md
-26_DECISIONS.md
-27_DATA_OWNERSHIP.md
-28_REQUIREMENTS_TRACEABILITY.md
-29_DEVELOPMENT_ROADMAP.md
-30_TASK_BREAKDOWN.md
-31_DEFINITION_OF_DONE.md
-32_PLANNING_REVIEW.md
-```
-
-This is a recommended structure, NOT a mandatory structure.
-
-Adapt it to the project's actual complexity.
-
-Small applications may require fewer documents.
-
-Large applications may require additional domain-specific documents.
-
----
-
-# 41. CRITICAL THINKING RULES
-
-Follow these rules throughout the planning process:
-
-1. **Do not write application code.**
-
-2. **Understand the product before designing the database.**
-
-3. **Read existing documentation before modifying it.**
-
-4. **Do not assume existing documentation is correct.**
-
-5. **Do not silently invent requirements.**
-
-6. **Identify ambiguity explicitly.**
-
-7. **Separate confirmed requirements from assumptions and recommendations.**
-
-8. **Do not remove important functionality merely to simplify implementation.**
-
-9. **Do not add unnecessary enterprise complexity.**
-
-10. **Prefer the simplest architecture that correctly satisfies the requirements.**
-
-11. **Keep MVP and future functionality clearly separated.**
-
-12. **Think carefully about concurrency wherever limited resources exist.**
-
-13. **Think carefully about idempotency wherever requests may be repeated.**
-
-14. **Think carefully about historical data wherever records must remain accurate after source data changes.**
-
-15. **Think carefully about permissions and ownership.**
-
-16. **Think carefully about failure scenarios for external integrations.**
-
-17. **Think carefully about cancellation, reversal, deletion, and recovery workflows.**
-
-18. **Never rely exclusively on frontend validation for critical business rules.**
-
-19. **Do not implement code simply because a future feature may eventually require it.**
-
-20. **Every important business rule should be testable.**
-
-21. **Every critical workflow should include failure and recovery paths.**
-
-22. **Every important architectural decision should be documented.**
-
-23. **Every important requirement should be traceable into implementation tasks and tests.**
-
-24. **Do not optimize prematurely.**
-
-25. **Do not design for imaginary scale without evidence.**
-
-26. **Do not expose database implementation details directly as product architecture without considering the domain.**
-
-27. **Challenge contradictions instead of working around them silently.**
-
-28. **Prefer explicit rules over developer interpretation.**
-
-29. **Planning should reduce implementation ambiguity as close to zero as reasonably possible.**
-
-30. **Another senior developer or AI coding agent should be able to implement the system from these specifications without repeatedly asking what the product owner meant.**
-
----
-
-# 42. DOMAIN-SPECIFIC DISCOVERY
-
-After understanding the project, identify important requirements that are specific to THIS domain but are not covered by this general template.
-
-Ask:
-
-```text
-What could go seriously wrong in this type of system?
-
-What business rules are unique to this industry?
-
-What entities are unique to this product?
-
-What processes require strict consistency?
-
-What information must never become historically inaccurate?
-
-What actions could create financial loss?
-
-What actions could create duplicate or conflicting records?
-
-What operations require approval?
-
-What operations require audit trails?
-
-What operations require concurrency protection?
-
-What external systems does this product depend on?
-
-What legal/privacy/security considerations apply?
-
-What would make users lose trust in this product?
-
-What functionality is absolutely essential for the product's core value?
-```
-
-Create additional domain-specific planning sections where necessary.
-
-Do NOT constrain the project to only the sections contained in this template.
-
----
-
-# 43. FINAL CONSISTENCY CHECK
-
-Before declaring planning complete, perform a cross-document consistency review.
-
-Verify:
-
-```text
-Requirements
-    ↓
-User Journeys
-    ↓
-Screens
-    ↓
-Business Rules
-    ↓
-Domain Model
-    ↓
-Database
-    ↓
-APIs
-    ↓
-Permissions
-    ↓
-Integrations
-    ↓
-Edge Cases
-    ↓
-Tests
-    ↓
-Development Tasks
-```
-
-Check that these layers agree with each other.
+Tasks must be ordered by dependency.
 
 For example:
 
-If a screen allows an action:
-
-→ the permission model should allow/deny it appropriately.
-
-If a business rule exists:
-
-→ backend validation should eventually enforce it.
-
-If an entity has a lifecycle:
-
-→ its state machine should define it.
-
-If concurrency can occur:
-
-→ the database/application architecture should address it.
-
-If a requirement exists:
-
-→ there should eventually be implementation tasks and tests covering it.
-
-If historical information matters:
-
-→ the database architecture should preserve it.
-
----
-
-# 44. FINAL READINESS GATE
-
-Do NOT automatically declare the project ready for development.
-
-The project is **READY FOR DEVELOPMENT** only when the core requirements are sufficiently specified.
-
-Evaluate:
-
 ```text
-Product scope
-User roles
-User journeys
-Core domain model
-Business rules
-State machines
-Database architecture
-Permissions
-Concurrency
+Foundation
+↓
+Authentication
+↓
+Roles & Permissions
+↓
+Core Parent Entities
+↓
+Dependent Entities
+↓
+Primary Workflows
+↓
 Integrations
-Payment lifecycle (if applicable)
-Historical data
-Security
-Privacy
-Edge cases
-Testing
-Non-functional requirements
-Deployment
-Task breakdown
-Acceptance criteria
+↓
+Reports
+↓
+Hardening
 ```
 
-Classify the project as:
+The actual order must come from the project's architecture.
+
+Avoid tasks such as:
 
 ```text
-READY
-
-NEEDS MINOR DECISIONS
-
-NEEDS MAJOR DECISIONS
-
-NOT READY
+TASK-001 Build the backend
+TASK-002 Build the frontend
+TASK-003 Build admin dashboard
 ```
 
-Explain the classification.
+These are too large.
+
+Tasks should normally represent one coherent, independently testable implementation unit.
 
 ---
 
-# 45. FINAL OUTPUT
+# CROSS-DOCUMENT TRACEABILITY
 
-After completing the planning review, provide:
+The 31 documents must NOT behave like independent documents.
+
+They form one specification.
+
+Maintain consistency across:
+
+```text
+PRODUCT OVERVIEW
+        ↓
+REQUIREMENTS
+        ↓
+USER STORIES
+        ↓
+APP FLOWS
+        ↓
+NAVIGATION
+        ↓
+SCREENS
+        ↓
+ARCHITECTURE
+        ↓
+DATABASE / MODELS
+        ↓
+BUSINESS RULES
+        ↓
+STATE MACHINES
+        ↓
+APIs
+        ↓
+VALIDATION
+        ↓
+ERROR HANDLING
+        ↓
+SECURITY
+        ↓
+TESTING
+        ↓
+ROADMAP
+        ↓
+TASK BREAKDOWN
+```
+
+For example:
+
+If:
+
+```text
+FR-023
+```
+
+requires a user to cancel something:
+
+There should be:
+
+- Appropriate user story
+- Flow
+- Screen/action
+- Permission
+- Business rule
+- State transition
+- API operation
+- Validation
+- Error handling
+- Audit requirement if necessary
+- Tests
+- Implementation task
+
+No major requirement should disappear between planning and implementation.
+
+---
+
+# DOCUMENT GENERATION ORDER
+
+Create/review the documentation in dependency order.
+
+Use approximately:
+
+```text
+01 Product Overview
+        ↓
+02 Requirements
+        ↓
+03 Roles & Permissions
+        ↓
+04 User Stories
+        ↓
+05 App Flows
+        ↓
+06 Navigation
+        ↓
+07 Screen Specifications
+        ↓
+08 Architecture
+        ↓
+09 Database
+        ↓
+10 Models & Migrations
+        ↓
+11 Business Rules
+        ↓
+12 State Machines
+        ↓
+13 API
+        ↓
+14 Validation
+        ↓
+15 Error Handling
+        ↓
+16 Notifications
+        ↓
+17 Background Jobs
+        ↓
+18 Integrations
+        ↓
+19 Security
+        ↓
+20 Audit Logging
+        ↓
+21 File Storage
+        ↓
+22 Reports & Analytics
+        ↓
+23 Settings
+        ↓
+24 Environment Configuration
+        ↓
+25 Deployment
+        ↓
+26 Backup & Recovery
+        ↓
+27 Testing
+        ↓
+28 Seed Data
+        ↓
+29 Definition of Done
+        ↓
+30 Development Roadmap
+        ↓
+31 Task Breakdown
+```
+
+However, planning is iterative.
+
+When a later document reveals a missing requirement, go back and update the earlier documents.
+
+Do not leave contradictions simply because an earlier document has already been written.
+
+---
+
+# MANDATORY FINAL REVIEW
+
+After producing all 31 documents, perform a final cross-document review.
+
+Check for:
+
+## Requirements
+
+- Missing requirements
+- Duplicate requirements
+- Contradictory requirements
+- Unclear requirements
+
+## Product
+
+- Missing workflows
+- Missing actors
+- Missing administrative functionality
+- Missing failure paths
+
+## Database
+
+- Missing entities
+- Incorrect relationships
+- Missing foreign keys
+- Missing unique constraints
+- Missing indexes
+- Race conditions
+- Historical-data problems
+
+## Architecture
+
+- Unnecessary complexity
+- Missing infrastructure
+- Incorrect boundaries
+- Scalability risks
+
+## Security
+
+- Missing authorization
+- Data exposure
+- Manipulation risks
+- Abuse risks
+- Missing rate limits
+- Missing auditability
+
+## UX
+
+- Missing screens
+- Dead-end flows
+- Unnecessary steps
+- Missing loading/error/empty states
+
+## APIs
+
+- Missing operations
+- Incorrect permissions
+- Missing validation
+- Missing idempotency
+
+## Testing
+
+- Requirements without tests
+- Business rules without tests
+- State transitions without tests
+- Edge cases without tests
+
+## Tasks
+
+- Requirements without implementation tasks
+- Tasks with missing dependencies
+- Tasks that are too large
+- Incorrect implementation order
+
+Correct the documentation before declaring planning complete.
+
+---
+
+# COMPLETENESS MATRIX
+
+Before finishing, verify:
+
+```text
+01_PRODUCT_OVERVIEW.md             COMPLETE / INCOMPLETE
+02_REQUIREMENTS.md                 COMPLETE / INCOMPLETE
+03_USER_ROLES_PERMISSIONS.md       COMPLETE / INCOMPLETE
+04_USER_STORIES.md                 COMPLETE / INCOMPLETE
+05_APP_FLOWS.md                    COMPLETE / INCOMPLETE
+06_NAVIGATION.md                   COMPLETE / INCOMPLETE
+07_SCREEN_SPECIFICATIONS.md        COMPLETE / INCOMPLETE
+08_ARCHITECTURE.md                 COMPLETE / INCOMPLETE
+09_DATABASE.md                     COMPLETE / INCOMPLETE
+10_MODELS_MIGRATIONS.md            COMPLETE / INCOMPLETE
+11_BUSINESS_RULES.md               COMPLETE / INCOMPLETE
+12_STATUS_STATE_MACHINES.md        COMPLETE / INCOMPLETE
+13_API_SPECIFICATION.md            COMPLETE / INCOMPLETE
+14_VALIDATION_RULES.md             COMPLETE / INCOMPLETE
+15_ERROR_HANDLING.md               COMPLETE / INCOMPLETE
+16_NOTIFICATIONS.md                COMPLETE / INCOMPLETE
+17_BACKGROUND_JOBS.md              COMPLETE / INCOMPLETE
+18_INTEGRATIONS.md                 COMPLETE / INCOMPLETE
+19_SECURITY.md                     COMPLETE / INCOMPLETE
+20_AUDIT_LOGGING.md                COMPLETE / INCOMPLETE
+21_FILE_STORAGE.md                 COMPLETE / INCOMPLETE
+22_REPORTS_ANALYTICS.md            COMPLETE / INCOMPLETE
+23_SETTINGS.md                     COMPLETE / INCOMPLETE
+24_ENVIRONMENT_CONFIG.md           COMPLETE / INCOMPLETE
+25_DEPLOYMENT.md                   COMPLETE / INCOMPLETE
+26_BACKUP_RECOVERY.md              COMPLETE / INCOMPLETE
+27_TESTING.md                      COMPLETE / INCOMPLETE
+28_SEED_DATA.md                    COMPLETE / INCOMPLETE
+29_DEFINITION_OF_DONE.md           COMPLETE / INCOMPLETE
+30_DEVELOPMENT_ROADMAP.md          COMPLETE / INCOMPLETE
+31_TASK_BREAKDOWN.md               COMPLETE / INCOMPLETE
+```
+
+Planning cannot be marked READY if a critical applicable document remains incomplete.
+
+---
+
+# FINAL PLANNING STATUS
+
+After completing and reviewing the documentation, report:
 
 ```text
 PLANNING STATUS
@@ -1805,52 +1480,28 @@ PLANNING STATUS
 Overall:
 READY / NEEDS MINOR DECISIONS / NEEDS MAJOR DECISIONS / NOT READY
 
-Project:
+Documentation:
+XX / 31 COMPLETE
+
+Confirmed requirements:
 ...
 
-Product summary:
-...
-
-Core users:
-...
-
-Core domain:
-...
-
-MVP:
-...
-
-Phase 2:
-...
-
-Out of scope:
-...
-
-Documents reviewed:
-...
-
-Documents created:
-...
-
-Documents updated:
-...
-
-Critical decisions made:
+Inferred requirements:
 ...
 
 Recommended decisions:
 ...
 
-Critical unresolved decisions:
+Open product decisions:
+...
+
+Critical architecture decisions:
 ...
 
 Architecture risks:
 ...
 
 Database risks:
-...
-
-Concurrency risks:
 ...
 
 Security risks:
@@ -1862,57 +1513,70 @@ Integration risks:
 UX risks:
 ...
 
-Requirements still missing:
+MVP scope:
 ...
 
-Overengineering identified:
+Phase 2 scope:
 ...
 
-Planning completeness:
-...%
+Development phases:
+...
+
+Total implementation tasks:
+...
+
+Blocking decisions:
+...
 
 Recommended next step:
 ...
 ```
 
----
-
-# FINAL INSTRUCTION
-
-Your job is **not to start coding quickly**.
-
-Your job is to remove ambiguity before coding begins.
-
-Treat the supplied project idea and existing documentation as raw product information that must be analyzed, challenged, structured, completed, and converted into an implementation-ready specification.
-
-Do not blindly follow examples in this prompt.
-
-Examples demonstrate the expected **depth of reasoning**, not mandatory architecture.
-
-Every project must be designed according to its own:
-
-* Users
-* Domain
-* Business model
-* Workflows
-* Risks
-* Data
-* Scale
-* Integrations
-* Security requirements
-* Operational requirements
-
-If something important is missing from this template but necessary for the specific project, **add it to the planning documentation**.
-
-If something in this template does not apply to the project, mark it:
+Do NOT declare:
 
 ```text
-NOT APPLICABLE
-Reason: ...
+READY FOR DEVELOPMENT
 ```
 
-rather than inventing unnecessary functionality.
+simply because all 31 files exist.
 
-**DO NOT WRITE APPLICATION CODE DURING THIS TASK.**
+READY means the **contents are sufficiently complete, consistent, cross-referenced, technically sound, and implementation-ready**.
 
-Complete and validate the planning/specification first.
+---
+
+# CRITICAL RULE
+
+The filenames are standardized.
+
+The **content is project-specific**.
+
+For every new project, discover:
+
+- Domain entities
+- Actors
+- Workflows
+- Business rules
+- States
+- Validation
+- Risks
+- Integrations
+- Concurrency problems
+- Security requirements
+- Reporting requirements
+- Operational requirements
+
+Do not force concepts from previous projects into the new project.
+
+A hospital system should be designed around its healthcare domain.
+
+A school system should be designed around its education domain.
+
+A marketplace should be designed around its marketplace domain.
+
+A booking system should be designed around its booking domain.
+
+A SaaS platform should be designed around its SaaS domain.
+
+A logistics system should be designed around its logistics domain.
+
+The **31-document framework stays consistent while the architecture inside those documents changes according to the project.**
